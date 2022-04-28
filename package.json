@@ -1,0 +1,31 @@
+{
+  "name": "grow-therapy",
+  "source": "index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build",
+    "test": "jest"
+  },
+  "version": "1.0.0",
+  "description": "Frontend Grow Therapy Assessment",
+  "author": "Nar Shahin",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.0",
+    "babel-cli": "6",
+    "babel-jest": "^28.0.2",
+    "babel-preset-react-app": "3",
+    "jest": "^28.0.2",
+    "parcel": "^2.5.0"
+  },
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
+}

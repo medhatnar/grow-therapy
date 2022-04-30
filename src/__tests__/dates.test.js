@@ -1,6 +1,7 @@
-import { yesterday } from '../utils';
+import { yesterday } from "../utils";
 
-test("returns yesterday's year/month/date", () => {
+describe("yesterday", () =>
+  test("returns yesterday's year/month/date", () => {
     const date = new Date();
     date.setDate(date.getDate() - 1);
     const dayBefore = date.toDateString();
@@ -10,5 +11,4 @@ test("returns yesterday's year/month/date", () => {
     const yesterdayDate = new Date(result);
 
     expect(yesterdayDate.toDateString()).toEqual(dayBefore);
-    expect(result).toMatch(yyyymmdd);
-});
+  }));

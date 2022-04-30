@@ -1,1 +1,1 @@
-export const DEFAULT_NUMBER_OF_RESULTS = 100;
+export const DEFAULT_LIMIT = 100;

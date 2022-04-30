@@ -1,8 +1,8 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import Page from "./components/Page";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import "./styles.css";
+import Page from "./components/Page";
+import "./styles.scss";
 // calendar - maintains state of date to be searched make reusable returns a date onDateSelect
 // dropdown - props: label title, list of selections, action onSelect
 // Card - name of the article, the number of views and the rank.
@@ -14,10 +14,9 @@ import "./styles.css";
 //        pagetitle
 //        top 3 days of the month: https://wikitech.wikimedia.org/wiki/Analytics/AQS/Pageviews#Monthly_counts
 
-const container = document.getElementById("root");
-const root = createRoot(container!);
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <Page />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );

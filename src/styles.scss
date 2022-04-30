@@ -1,0 +1,85 @@
+html {
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.card {
+  padding: 15px;
+  position: relative;
+  background-color: white;
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: ease-in-out 120ms;
+  display: flex;
+
+  &:hover {
+    transform: scale(1.015);
+  }
+
+  width: 100%;
+  margin: 30px;
+
+  /* cell phone */
+  @media screen and (min-width: 400px) {
+    width: 60%;
+    margin: 32px auto;
+  }
+
+  /* tablet */
+  @media screen and (min-width: 700px) {
+    width: calc(50% - 64px);
+  }
+
+  /* laptop/desktop */
+  @media screen and (min-width: 1000px) {
+    width: calc(50% - 64px);
+  }
+}
+
+.title {
+  margin: 0 16px 0 0;
+  font-size: 24px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.subtitle {
+  display: inline-block;
+}
+
+.description {
+  font-family: Lato, sans-serif;
+  color: grey;
+  margin-right: 5px;
+}
+
+.details {
+  text-align: right;
+  width: 70px;
+  position: relative;
+  margin-top: 3px;
+}
+
+.label {
+  display: block;
+  color: grey;
+  font-family: Lato, sans-serif;
+}
+
+.info-link {
+  position: absolute;
+  display: block;
+  text-decoration: none;
+  font-family: Lato, sans-serif;
+  transition: ease-in-out 120ms;
+  width: 70px;
+
+  &:link {
+    color: red;
+  }
+
+  &:hover {
+    transform: translateY(-1px) scale(1.1);
+    color: red;
+  }
+}

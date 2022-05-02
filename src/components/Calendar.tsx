@@ -5,7 +5,7 @@ type CalendarProps = {
   startDate: string;
   onDateSelect: (option: any) => void;
 };
-
+ // set min date and max date
 export default function Calendar(props: CalendarProps) {
   const { label, startDate, onDateSelect } = props;
   // add format validation

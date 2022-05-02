@@ -1,6 +1,5 @@
-import type { Config } from "@jest/types";
+import { Config } from "@jest/types";
 
-// Sync object
 const config: Config.InitialOptions = {
   verbose: true,
 };

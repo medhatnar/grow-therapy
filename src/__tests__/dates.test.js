@@ -1,14 +1,12 @@
 import { yesterday } from "../utils";
 
 describe("yesterday", () =>
-  test("returns yesterday's year/month/date", () => {
-    const date = new Date();
-    date.setDate(date.getDate() - 1);
-    const dayBefore = date.toDateString();
-    const yyyymmdd = /^\d{4}\/\d{2}\/\d{2}$/;
+  it("returns yesterday's year/month/date", () => {
+    const todayDate = new Date().getTime();
 
     const result = yesterday();
-    const yesterdayDate = new Date(result);
+    const monthIndexOffset = result.month - 1
+    const yesterdayDate = new Date(result.year, monthIndexOffset, result.day).getTime();
 
-    expect(yesterdayDate.toDateString()).toEqual(dayBefore);
+    expect(yesterdayDate).toBeLessThan(todayDate);
   }));

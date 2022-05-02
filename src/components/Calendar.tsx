@@ -8,14 +8,14 @@ type CalendarProps = {
 
 export default function Calendar(props: CalendarProps) {
   const { label, startDate, onDateSelect } = props;
-
+  // add format validation
   const normalizeDate = (dateValue: string) => {
     const dateNumbers = dateValue.split("-");
-    onDateSelect({
+    return {
       year: dateNumbers[0],
       month: dateNumbers[1],
       day: dateNumbers[2],
-    });
+    };
   };
 
   return (
@@ -26,7 +26,7 @@ export default function Calendar(props: CalendarProps) {
         name="calendar-input"
         type="date"
         value={startDate}
-        onChange={(e) => normalizeDate(e.target.value)}
+        onChange={(e) => onDateSelect(normalizeDate(e.target.value))}
       ></input>
     </div>
   );

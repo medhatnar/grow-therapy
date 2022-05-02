@@ -1,3 +1,7 @@
+export const stripSpecialChars = (input: string) => {
+  return input.replace(/[^0-9a-zA-Z.()]/g, " ");
+}
+
 export const yesterday = () => {
   const today = new Date();
   today.setDate(today.getDate() - 1);

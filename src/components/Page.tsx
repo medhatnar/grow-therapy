@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "./Calendar";
+import Card from "./Card";
 import Dropdown from "./Dropdown";
 import { DEFAULT_LIMIT } from "../constants";
-import { yesterday } from "../utils";
-import {Card} from './Card';
+import { yesterday, stripSpecialChars } from "../utils";
+import { articles } from "../api";
 
 export default function Page() {
-  const [date, setDate] = useState({ year: "2022", month: "01", day: "01" });
+  const [date, setDate] = useState({
+    year: "2020",
+    month: "01",
+    day: "01",
+  });
   const [results, setResults] = useState<
     { article: string; rank: number; views: number }[]
   >([]);
   const [limit, setLimit] = useState<number>(DEFAULT_LIMIT);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => setDate(yesterday()), []);
 
   useEffect(() => {
-    fetch(
-      `https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/${date.year}/${date.month}/${date.day}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const newResults = data.items[0].articles;
+    async function getArticles() {
+      const newResults = await articles(`${date.year}/${date.month}/${date.day}`);
+      if (Array.isArray(newResults)) {
         setResults(newResults);
-      });
+      } else {
+        setError(newResults);
+      }
+    }
+    getArticles();
   }, [date]);
 
   return (
     <div className="container">
-      <Card />
       <header>Wikipedia's Most Viewed Articles</header>
       <Calendar
         label="Start Date:"
@@ -39,9 +45,23 @@ export default function Page() {
         options={[25, 50, 75, 100, 200]}
         onSelect={setLimit}
       />
-      {results.slice(0,limit).map((item, i) => (
-        <div key={item.article}>{item.article}{i}</div>
-      ))}
+      {error ? (
+        <span>{error}</span>
+      ) : (
+        <div className="sub-container">
+          {results.slice(0, limit).map((item) => {
+            return (
+              <Card
+                key={item.article}
+                title={stripSpecialChars(item.article)}
+                subtitle={item.rank}
+                detailsLabel={"Views"}
+                details={item.views}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

@@ -4,8 +4,30 @@ html {
   font-family: Averta,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 
-.sub-container {
-  
+ul {
+  list-style: none;
+}
+
+
+.detail-card {
+
+  // width: 100%;
+  // margin: 30px;
+  // /* cell phone */
+  // @media screen and (min-width: 400px) {
+  //   width: 60%;
+  //   margin: 32px auto;
+  // }
+
+  // /* tablet */
+  // @media screen and (min-width: 700px) {
+  //   width: calc(50% - 64px);
+  // }
+
+  // /* laptop/desktop */
+  // @media screen and (min-width: 1000px) {
+  //   width: calc(50% - 64px);
+  // }
 }
 
 .card {

@@ -1,7 +1,7 @@
-import { articles, articlesDailyViews, articlesSummary } from "../api";
+import { articles, articlesDailyViews, articlesExcerpt } from "../api";
 const unmockedFetch = global.fetch;
 
-beforeAll(() => {
+beforeEach(() => {
   global.fetch = jest.fn(() =>
     Promise.resolve({
       ok: true,
@@ -28,12 +28,12 @@ beforeAll(() => {
   );
 });
 
-afterAll(() => {
+afterEach(() => {
   global.fetch = unmockedFetch;
 });
 
 describe("articles", () =>
-  xit("gets a list of articles with the most page views for a specific day", () => {
+  it("gets a list of articles with the most page views for a given day", () => {
     const date = "2022/04/01";
     const result = articles(date);
 
@@ -49,7 +49,7 @@ describe("articles", () =>
   }));
 
 describe("articles", () =>
-  xit("throws an error if invalid date provided", () => {
+  it("throws an error if invalid date provided", () => {
     const invalidDate = "2022-4-1";
     const result = articles(invalidDate);
 
@@ -59,7 +59,7 @@ describe("articles", () =>
   }));
 
 describe("articles", () =>
-  xit("returns cause of failure if request fails", async () => {
+  it("returns cause of failure if request fails", async () => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         ok: true,
@@ -73,7 +73,7 @@ describe("articles", () =>
   }));
 
 describe("articlesDailyViews", () => {
-  it("gives daily views for a given page for a given month", () => {
+  xit("gives daily views for a given page for a given month", () => {
     const pageTitle = expect.any(String);
     const startingDate = "2015100100";
     const endingDate = "2015103100";
@@ -85,7 +85,7 @@ describe("articlesDailyViews", () => {
 });
 
 describe("articlesSummary", () =>
-  xit("includes the page’s title, summary paragraph, and summary paragraph html", () => {
+  it("includes the page’s title, summary paragraph, and summary paragraph html", () => {
     const pageTitle = expect.any(String);
     const details = {
       displayTitle: expect.any(String),
@@ -93,7 +93,7 @@ describe("articlesSummary", () =>
       extract: expect.any(String),
     };
 
-    const result = articlesDetail(pageTitle);
+    const result = articlesExcerpt(pageTitle);
 
     expect(result).toBe(expect.objectContaining(details));
   }));

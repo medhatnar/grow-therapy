@@ -73,7 +73,7 @@ export default function DetailCard(props: DetailCardProps) {
       <ul>
         {top3DaysOfMonth.map(
           (viewsData: { id: number; timestamp: string; views: number }) => (
-            <li key={viewsData.id}>
+            <li key={`${viewsData.id}${viewsData.timestamp}`}>
               {viewsData.views} views - {viewsData.timestamp}
             </li>
           )

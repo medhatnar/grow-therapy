@@ -4,10 +4,12 @@ import Card from "./Card";
 import Dropdown from "./Dropdown";
 import DetailCard from "./DetailCard";
 import { DEFAULT_LIMIT } from "../constants";
-import { stripSpecialChars, yesterday } from "../utils";
+import { lastDayOfMonth, stripSpecialChars, yesterday } from "../utils";
 import { articles } from "../api";
+import { Icon } from '../assets/Eyecon';
 
 export default function Page() {
+  const yesterdayDate = yesterday();
   const [date, setDate] = useState({
     year: "2020",
     month: "01",
@@ -19,7 +21,7 @@ export default function Page() {
   const [limit, setLimit] = useState<number>(DEFAULT_LIMIT);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => setDate(yesterday()), []);
+  useEffect(() => setDate(yesterdayDate), []);
 
   useEffect(() => {
     getArticles();
@@ -47,8 +49,9 @@ export default function Page() {
           defaultMonth={date.month}
           defaultYear={date.year}
           label="Start Date:"
-          maxMonth={date.month}
-          maxYear={date.year}
+          maxMonth={yesterdayDate.month}
+          maxYear={yesterdayDate.year}
+          maxDay={yesterdayDate.day}
           minMonth={"07"}
           minYear={"2015"}
           onDateSelect={setDate}
@@ -70,7 +73,7 @@ export default function Page() {
                   <Card
                     title={stripSpecialChars(item.article)}
                     subtitle={item.rank}
-                    detailsLabel={"Views"}
+                    detailsLabel={<Icon />}
                     details={item.views}
                   />
                 </summary>

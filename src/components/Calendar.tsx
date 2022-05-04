@@ -6,6 +6,7 @@ type CalendarProps = {
   maxMonth?: string;
   maxYear?: string;
   minMonth?: string | number;
+  maxDay?: string | number;
   minYear?: string | number;
   defaultMonth: string | number;
   defaultYear: string | number;
@@ -20,6 +21,7 @@ export default function Calendar(props: CalendarProps) {
     label,
     maxMonth,
     maxYear,
+    maxDay,
     minMonth,
     minYear,
     onDateSelect,
@@ -52,7 +54,7 @@ export default function Calendar(props: CalendarProps) {
         value={formatDate(defaultYear, defaultMonth, defaultDay)}
         onChange={(e) => onDateSelect(normalizeDate(e.target.value))}
         min={formatDate(minYear, minMonth, "01")}
-        max={formatDate(maxYear, maxMonth, "01")}
+        max={formatDate(maxYear, maxMonth, maxDay)}
       ></input>
     </div>
   );

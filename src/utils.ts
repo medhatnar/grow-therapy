@@ -14,6 +14,8 @@ export const yesterday = () => {
   return { year, month: monthFormatted, day: dayFormatted };
 };
 
+export const lastDayOfMonth = (year: string | number, month: string | number) => new Date(Number(year), Number(month), 0).getDate();
+
 export const dateRange = (year: string | number, month: string | number) => {
   const lastDayOfMonth = new Date(Number(year), Number(month), 0).getDate();
 

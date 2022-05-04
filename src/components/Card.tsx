@@ -1,15 +1,15 @@
-import React from "react";
+import React, { ReactElement, useState } from "react";
 
 type CardProps = {
-  description?: string;
   details: string | number;
-  detailsLabel: string;
+  detailsLabel?: string | ReactElement;
   subtitle?: string | number;
   title: string | number;
 };
 
 export default function Card(props: CardProps) {
-  const { description, details, detailsLabel, subtitle, title } = props;
+  const { details, detailsLabel, subtitle, title } = props;
+
   return (
     <div className="card">
       <div className="card-titles">
@@ -17,11 +17,15 @@ export default function Card(props: CardProps) {
         <h3 className="card-title">{title}</h3>
       </div>
       <div className="card-details">
-      <label className="card-details-label">
-        {detailsLabel}
-        <div id="detail">{details}</div>
-      </label>
-      <a className="info-link" href="#">preview &#8964;</a>
+        <label className="card-details-label">
+          <>
+            {detailsLabel}
+            <div id="detail">{details}</div>
+          </>
+        </label>
+        <p className="info-link" role="button">
+          preview &#x2193;
+          </p>
       </div>
     </div>
   );

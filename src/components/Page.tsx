@@ -4,7 +4,7 @@ import Card from "./Card";
 import Dropdown from "./Dropdown";
 import DetailCard from "./DetailCard";
 import { DEFAULT_LIMIT } from "../constants";
-import { yesterday, stripSpecialChars } from "../utils";
+import { stripSpecialChars, yesterday } from "../utils";
 import { articles } from "../api";
 
 export default function Page() {
@@ -22,39 +22,33 @@ export default function Page() {
   useEffect(() => setDate(yesterday()), []);
 
   useEffect(() => {
-    async function getArticles() {
-      const newResults = await articles(
-        `${date.year}/${date.month}/${date.day}`
-      );
-      if (Array.isArray(newResults)) {
-        setResults(newResults);
-      } else {
-        console.log("error", newResults);
-        setError(newResults);
-      }
-    }
     getArticles();
   }, [date]);
 
-  const handleGetDetails = (title: string) => {
-    // const handleGetDetails = (title: string) => {
-    //     const summary = articlesSummary(title);
-    //     const top3Days = articlesDailyViews;
-    //     const readMoreLink = `${READ_MORE}/${title}`;
-    // }
-    // const summary = articlesSummary(title);
-    const startingDate = `${date.year}${date.month}0100`;
-    // get helper function to get how many days are in a given month
-    const endingDate = `${date.year}${date.month}3000`;
-  };
+  async function getArticles() {
+    const newResults = await articles(`${date.year}/${date.month}/${date.day}`);
+    if (Array.isArray(newResults)) {
+      setResults(newResults);
+    } else {
+      console.log("error", newResults);
+      setError(newResults);
+    }
+  }
+
   return (
     <div className="container">
       <header>
         <h1>Wikipedia's Most Viewed Articles</h1>
       </header>
       <Calendar
+        defaultDay={date.day}
+        defaultMonth={date.month}
+        defaultYear={date.year}
         label="Start Date:"
-        startDate={`${date.year}-${date.month}-${date.day}`}
+        maxMonth={date.month}
+        maxYear={date.year}
+        minMonth={"07"}
+        minYear={"2015"}
         onDateSelect={setDate}
       />
       <Dropdown
@@ -68,17 +62,17 @@ export default function Page() {
         <div className="sub-container">
           {results.slice(0, limit).map((item, i) => {
             return (
-              <div key={item.views}>
-                  <summary>
-                    <Card
-                      title={stripSpecialChars(item.article)}
-                      subtitle={item.rank}
-                      detailsLabel={"Views"}
-                      details={item.views}
-                    />
-                  </summary>
-                  <DetailCard title={item.article} dateObj={date} />
-              </div>
+              <details key={item.views}>
+                <summary>
+                  <Card
+                    title={stripSpecialChars(item.article)}
+                    subtitle={item.rank}
+                    detailsLabel={"Views"}
+                    details={item.views}
+                  />
+                </summary>
+                <DetailCard title={item.article} date={date} />
+              </details>
             );
           })}
         </div>

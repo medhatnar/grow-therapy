@@ -1,14 +1,38 @@
 import React from "react";
 
 type CalendarProps = {
+  defaultDay: string | number;
   label?: string;
-  startDate: string;
-  onDateSelect: (option: any) => void;
+  maxMonth?: string;
+  maxYear?: string;
+  minMonth?: string | number;
+  minYear?: string | number;
+  defaultMonth: string | number;
+  defaultYear: string | number;
+  onDateSelect?: (option: any) => void;
 };
- // set min date and max date
+// set min date and max date
 export default function Calendar(props: CalendarProps) {
-  const { label, startDate, onDateSelect } = props;
+  const {
+    defaultDay,
+    defaultMonth,
+    defaultYear,
+    label,
+    maxMonth,
+    maxYear,
+    minMonth,
+    minYear,
+    onDateSelect,
+  } = props;
   // add format validation
+  const formatDate = (
+    year: string | number,
+    month: string | number,
+    day: string | number
+  ) => {
+    return `${year}-${month}-${day}`;
+  };
+
   const normalizeDate = (dateValue: string) => {
     const dateNumbers = dateValue.split("-");
     return {
@@ -25,8 +49,10 @@ export default function Calendar(props: CalendarProps) {
         id="calendar-input"
         name="calendar-input"
         type="date"
-        value={startDate}
+        value={formatDate(defaultYear, defaultMonth, defaultDay)}
         onChange={(e) => onDateSelect(normalizeDate(e.target.value))}
+        min={formatDate(minYear, minMonth, "01")}
+        max={formatDate(maxYear, maxMonth, "01")}
       ></input>
     </div>
   );

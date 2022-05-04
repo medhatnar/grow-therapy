@@ -77,15 +77,15 @@ describe("articlesDailyViews", () => {
     const pageTitle = expect.any(String);
     const startingDate = "2015100100";
     const endingDate = "2015103100";
-
+    // account for days only after wikipedia existed 
     const result = articlesDailyViews(pageTitle, startingDate, endingDate);
-
+    
     // expect to have been called with correct starting and ending range. try using jest.spyOn()
   });
 });
 
 describe("articlesSummary", () =>
-  it("includes the page’s title, summary paragraph, and summary paragraph html", () => {
+  xit("includes the page’s title, summary paragraph, and summary paragraph html", () => {
     const pageTitle = expect.any(String);
     const details = {
       displayTitle: expect.any(String),

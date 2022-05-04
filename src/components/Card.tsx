@@ -12,16 +12,16 @@ export default function Card(props: CardProps) {
   const { description, details, detailsLabel, subtitle, title } = props;
   return (
     <div className="card">
-      <div style={{ flexGrow: 1 }}>
-        <div>
-          <h3 className="title">{title}</h3>
-          <span className="subtitle">{subtitle}</span>
-        </div>
-        <p className="description">{description}</p>
+      <div className="card-titles">
+        <p className="subtitle">{subtitle}</p>
+        <h3 className="card-title">{title}</h3>
       </div>
-      <div className="details">
+      <div className="card-details">
+      <label className="card-details-label">
         {detailsLabel}
-        <span className="details-label">{details}</span>
+        <div id="detail">{details}</div>
+      </label>
+      <a className="info-link" href="#">preview &#8964;</a>
       </div>
     </div>
   );

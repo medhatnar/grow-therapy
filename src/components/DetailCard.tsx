@@ -66,8 +66,9 @@ export default function DetailCard(props: DetailCardProps) {
     <div className="detail-card">
       <span>&#10006;</span>
       <header>
-        <h2>Top views for</h2>
-        <h2>{title}</h2>
+        <h4>
+          Top views for <br /> {title}
+        </h4>
       </header>
       <ul>
         {top3DaysOfMonth.map(

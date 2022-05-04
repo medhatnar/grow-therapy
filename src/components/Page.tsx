@@ -30,40 +30,43 @@ export default function Page() {
     if (Array.isArray(newResults)) {
       setResults(newResults);
     } else {
-      console.log("error", newResults);
       setError(newResults);
     }
   }
 
   return (
-    <div className="container">
-      <header>
-        <h1>Wikipedia's Most Viewed Articles</h1>
+    <div className="page-container">
+      <header className="page-header">
+        <h1>
+          <span>Wikipedia's</span><br/><span>Most Viewed Articles</span>
+        </h1>
       </header>
-      <Calendar
-        defaultDay={date.day}
-        defaultMonth={date.month}
-        defaultYear={date.year}
-        label="Start Date:"
-        maxMonth={date.month}
-        maxYear={date.year}
-        minMonth={"07"}
-        minYear={"2015"}
-        onDateSelect={setDate}
-      />
-      <Dropdown
-        defaultOption={DEFAULT_LIMIT}
-        options={[25, 50, 75, 100, 200]}
-        onSelect={setLimit}
-      />
+      <div className="option-selectors">
+        <Calendar
+          defaultDay={date.day}
+          defaultMonth={date.month}
+          defaultYear={date.year}
+          label="Start Date:"
+          maxMonth={date.month}
+          maxYear={date.year}
+          minMonth={"07"}
+          minYear={"2015"}
+          onDateSelect={setDate}
+        />
+        <Dropdown
+          defaultOption={DEFAULT_LIMIT}
+          options={[25, 50, 75, 100, 200]}
+          onSelect={setLimit}
+        />
+      </div>
       {error ? (
         <span>{error}</span>
       ) : (
-        <div className="sub-container">
-          {results.slice(0, limit).map((item, i) => {
+        <div className="cards-container">
+          {results.slice(0, limit).map((item) => {
             return (
-              <details key={item.views}>
-                <summary>
+              <details className="article-details" key={item.views}>
+                <summary className="articles-summaries">
                   <Card
                     title={stripSpecialChars(item.article)}
                     subtitle={item.rank}

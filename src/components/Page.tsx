@@ -45,47 +45,49 @@ export default function Page() {
           <span className="main-header-category">Most Viewed Articles</span>
         </h1>
       </header>
-      <div className="option-selectors">
-        <Calendar
-          defaultDay={date.day}
-          defaultMonth={date.month}
-          defaultYear={date.year}
-          label="Start Date:"
-          maxMonth={yesterdayDate.month}
-          maxYear={yesterdayDate.year}
-          maxDay={yesterdayDate.day}
-          minMonth={"07"}
-          minYear={"2015"}
-          onDateSelect={setDate}
-        />
-        <Dropdown
-          defaultOption={DEFAULT_LIMIT}
-          label="Results:"
-          options={[25, 50, 75, 100, 200]}
-          onSelect={setLimit}
-        />
-      </div>
-      {error ? (
-        <span>{error}</span>
-      ) : (
-        <div className="cards-container">
-          {results.slice(0, limit).map((item) => {
-            return (
-              <details className="article-details" key={item.views}>
-                <summary className="articles-summaries">
-                  <Card
-                    title={stripSpecialChars(item.article)}
-                    subtitle={item.rank}
-                    detailsLabel={<Icon />}
-                    details={item.views}
-                  />
-                </summary>
-                <DetailCard title={item.article} date={date} />
-              </details>
-            );
-          })}
+      <div className="page-content">
+        <div className="option-selectors">
+          <Calendar
+            defaultDay={date.day}
+            defaultMonth={date.month}
+            defaultYear={date.year}
+            label="Start Date:"
+            maxMonth={yesterdayDate.month}
+            maxYear={yesterdayDate.year}
+            maxDay={yesterdayDate.day}
+            minMonth={"07"}
+            minYear={"2015"}
+            onDateSelect={setDate}
+          />
+          <Dropdown
+            defaultOption={DEFAULT_LIMIT}
+            label="Results:"
+            options={[25, 50, 75, 100, 200]}
+            onSelect={setLimit}
+          />
         </div>
-      )}
+        {error ? (
+          <span>{error}</span>
+        ) : (
+          <div className="cards-container">
+            {results.slice(0, limit).map((item) => {
+              return (
+                <details className="article-details" key={item.views}>
+                  <summary className="articles-summaries">
+                    <Card
+                      title={stripSpecialChars(item.article)}
+                      subtitle={item.rank}
+                      detailsLabel={<Icon />}
+                      details={item.views}
+                    />
+                  </summary>
+                  <DetailCard title={item.article} date={date} />
+                </details>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

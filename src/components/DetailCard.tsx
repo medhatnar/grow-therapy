@@ -64,14 +64,12 @@ export default function DetailCard(props: DetailCardProps) {
 
   return (
     <div className="detail-card">
-      <span id="close">&#10006;</span>
-      <div>
-        <header>
+      <div className="top-detail">
+        <header className="detail-header">
           <h4>
             Top views for <br /> {stripSpecialChars(title)}
           </h4>
         </header>
-      </div>
       <ul>
         {top3DaysOfMonth.map(
           (viewsData: { id: number; timestamp: string; views: number }) => (
@@ -81,7 +79,8 @@ export default function DetailCard(props: DetailCardProps) {
           )
         )}
       </ul>
-      <div dangerouslySetInnerHTML={{ __html: extract }}></div>
+      </div>
+      <div className="preview-summary" dangerouslySetInnerHTML={{ __html: extract }}></div>
       <footer>
         <a id="read-more-link" href={readMoreLink}>
           full article &#x2192;

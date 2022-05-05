@@ -45,8 +45,8 @@ export default function Calendar(props: CalendarProps) {
   };
 
   return (
-    <div className="container">
-      <label htmlFor="start">{label}</label>
+    <div className="calendar">
+      <label htmlFor="start" className="calendar-label">{label}</label>
       <input
         id="calendar-input"
         name="calendar-input"

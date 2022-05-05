@@ -1,5 +1,5 @@
 export const stripSpecialChars = (input: string) => {
-  return input.replace(/[^0-9a-zA-Z.()]/g, " ");
+  return input.replace(/[^0-9a-zA-Z.()-]/g, " ");
 };
 
 export const yesterday = () => {
@@ -13,8 +13,6 @@ export const yesterday = () => {
 
   return { year, month: monthFormatted, day: dayFormatted };
 };
-
-export const lastDayOfMonth = (year: string | number, month: string | number) => new Date(Number(year), Number(month), 0).getDate();
 
 export const dateRange = (year: string | number, month: string | number) => {
   const lastDayOfMonth = new Date(Number(year), Number(month), 0).getDate();

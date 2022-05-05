@@ -11,12 +11,12 @@ export default function Dropdown(props: DropdownProps) {
   const { label, defaultOption, options, onSelect } = props;
 
   return (
-    <div className="container">
-      <label htmlFor="drop-down">{label}</label>
+    <div className="drop-down">
+      <label htmlFor="drop-down-selector" className="drop-down-label">{label}</label>
       <select
         defaultValue={defaultOption}
         name="drop-down-selector"
-        id="drop-down"
+        id="drop-down-selector"
         onChange={(e) => onSelect(e.target.value)}
       >
         {options.map((option, i) => {

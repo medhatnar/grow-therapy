@@ -2,7 +2,7 @@ import { timeStamp } from "console";
 import React, { useEffect, useState } from "react";
 import { articlesExcerpt, articlesDailyViews } from "../api";
 import { FULL_ARTICLE } from "../constants";
-import { dateRange } from "../utils";
+import { stripSpecialChars, dateRange } from "../utils";
 
 type DetailCardProps = {
   date: {
@@ -64,12 +64,14 @@ export default function DetailCard(props: DetailCardProps) {
 
   return (
     <div className="detail-card">
-      <span>&#10006;</span>
-      <header>
-        <h4>
-          Top views for <br /> {title}
-        </h4>
-      </header>
+      <span id="close">&#10006;</span>
+      <div>
+        <header>
+          <h4>
+            Top views for <br /> {stripSpecialChars(title)}
+          </h4>
+        </header>
+      </div>
       <ul>
         {top3DaysOfMonth.map(
           (viewsData: { id: number; timestamp: string; views: number }) => (
@@ -81,7 +83,9 @@ export default function DetailCard(props: DetailCardProps) {
       </ul>
       <div dangerouslySetInnerHTML={{ __html: extract }}></div>
       <footer>
-        <a href={readMoreLink}>full article &#x2192;</a>
+        <a id="read-more-link" href={readMoreLink}>
+          full article &#x2192;
+        </a>
       </footer>
     </div>
   );

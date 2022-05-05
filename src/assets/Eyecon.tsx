@@ -15,6 +15,8 @@ export const Icon = forwardRef(
         viewBox="0 0 700 700"
         ref={ref}
         xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby="Views"
       >
         <defs>
           <symbol id="u" overflow="visible">

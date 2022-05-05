@@ -72,38 +72,3 @@ describe("articles", () =>
     expect(result).toContain("REQUEST FAILED");
   }));
 
-describe("articlesDailyViews", () => {
-  xit("gives daily views for a given page for a given month", () => {
-    const pageTitle = expect.any(String);
-    const startingDate = "2015100100";
-    const endingDate = "2015103100";
-    // account for days only after wikipedia existed 
-    const result = articlesDailyViews(pageTitle, startingDate, endingDate);
-    
-    // expect to have been called with correct starting and ending range. try using jest.spyOn()
-  });
-});
-
-describe("articlesSummary", () =>
-  xit("includes the page’s title, summary paragraph, and summary paragraph html", () => {
-    const pageTitle = expect.any(String);
-    const details = {
-      displayTitle: expect.any(String),
-      extract_html: expect.any(String),
-      extract: expect.any(String),
-    };
-
-    const result = articlesExcerpt(pageTitle);
-
-    expect(result).toBe(expect.objectContaining(details));
-  }));
-// 169 ms
-// https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/all-agents/Pet%20door/daily/20220401/20220401
-// Include the page’s title, a preview of the first paragraph, and the top 3 days the page was viewed this month
-// Detailed View props - maintains state and requests for additional details:
-//        props: Read more: https://en.wikipedia.org/wiki/React_(JavaScript_library)
-//        excerpt summary: https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Stack%20Overflow
-//        pagetitle
-//        top 3 days of the month: https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/de.wikipedia/all-access/all-agents/Barack_Obama/monthly/2016010100/2016123100
-// memoize/hash?
-// sockets

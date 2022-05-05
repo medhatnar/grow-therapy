@@ -12,4 +12,4 @@ Wikipedia's most viewed articles
 
 ### Run tests
 
-`yarn test'
+`yarn test`

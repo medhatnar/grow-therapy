@@ -35,7 +35,7 @@ details > summary::-webkit-details-marker {
 
 // page //
 .page-container {
-  width: 95%;
+  width: 90%;
   margin: 10% auto;
   background-color: rgba(253, 253, 253, 0.9);
   border: 3px solid rgba(253, 253, 253, 0.8);
@@ -46,6 +46,8 @@ details > summary::-webkit-details-marker {
 
 .page-content {
   display: flex;
+  width: 100%;
+  overflow-x: visible;
   /* cell phone */
   @media screen and (min-width: 400px) {
     flex-direction: column;

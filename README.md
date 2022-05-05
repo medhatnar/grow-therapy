@@ -4,7 +4,7 @@ Wikipedia's most viewed articles
 
 ### Installation
 
-`yarn install`
+`yarn`
 
 ### Get App Started
 

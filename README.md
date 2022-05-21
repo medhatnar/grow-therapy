@@ -2,7 +2,7 @@
 
 ### Installation
 
-`git clone https://github.com/medhatnar/grow-therapy.git`
+`git clone https://github.com/medhatnar/wikipedia-most-viewed.git`
 
 `yarn`
 

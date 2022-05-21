@@ -1,6 +1,4 @@
-# grow-therapy
-
-Wikipedia's most viewed articles
+# Wikipedia's most viewed articles
 
 ### Installation
 
